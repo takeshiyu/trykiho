@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kiho — Privacy Policy</title>
+<meta name="description" content="kiho privacy policy: local-first, bring your own key. The only data that leaves your device is the text you choose to look up, sent to Anthropic to generate the explanation.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect x='1' y='1' width='126' height='126' rx='28' fill='%23e8dfc6' stroke='%23d5c8a8' stroke-width='2'/%3E%3Crect x='20' y='72' width='88' height='26' rx='13' fill='%235a7440'/%3E%3Ctext x='64' y='95' font-family='Georgia,serif' font-weight='700' font-size='92' fill='%2336332c' text-anchor='middle'%3Ek%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#fdfcf9; --ink:#36332c; --matcha:#5f7a43; --muted:#706c58;
+    --border:#e5e1d3; --card:#fffefb;
+    --serif:'Source Serif 4',Georgia,'Songti TC','Noto Serif TC',serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang TC','Noto Sans TC',sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+       line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:48px 24px 96px}
+  header{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  header svg{width:44px;height:44px;flex:0 0 auto}
+  .brand{font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:-.5px}
+  .brand a{color:inherit;text-decoration:none}
+  h1{font-family:var(--serif);font-weight:600;font-size:34px;letter-spacing:-.6px;margin:28px 0 4px}
+  h2{font-family:var(--serif);font-weight:600;font-size:22px;margin:40px 0 10px}
+  .eff{color:var(--muted);font-size:15px;margin:0 0 4px}
+  .lead{font-size:18px}
+  .summary{background:var(--card);border:1px solid var(--border);border-radius:14px;
+           padding:18px 20px;margin:24px 0}
+  .summary strong{color:var(--matcha)}
+  ul{padding-left:22px}
+  li{margin:7px 0}
+  a{color:var(--matcha);text-decoration:underline;text-underline-offset:2px}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;
+       background:#edeadf;padding:1px 6px;border-radius:6px;color:#4a4636}
+  hr{border:none;border-top:1px solid var(--border);margin:44px 0}
+  footer{color:var(--muted);font-size:14px}
+  footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="1" y="1" width="126" height="126" rx="28" fill="#e8dfc6" stroke="#d5c8a8" stroke-width="2"/>
+      <rect x="20" y="72" width="88" height="26" rx="13" fill="#5a7440"/>
+      <text x="64" y="95" font-family="'Source Serif 4',Georgia,serif" font-weight="660" font-size="92" fill="#36332c" text-anchor="middle">k</text>
+    </svg>
+    <div class="brand"><a href="/">kiho</a></div>
+  </header>
+
+  <h1>Privacy Policy</h1>
+  <p class="eff">Effective date: 29 June 2026</p>
+  <p class="eff">The public product name is <strong>kiho</strong> (Taiwanese “kì-hō”, 記號 — “a mark”).</p>
+
+  <p class="lead">kiho is a browser extension for in-context English learning: you highlight a word, phrase, or sentence while reading, get an AI explanation in context, and your highlights persist across visits and feed a spaced-repetition review.</p>
+
+  <div class="summary">
+    <strong>Summary in one line:</strong> kiho runs locally and brings your own API key. The only data that ever leaves your device is the text you choose to look up (plus its surrounding sentence), sent to Anthropic to generate the explanation. There is no telemetry, no analytics, no account, and nothing is sent to the developer.
+  </div>
+
+  <h2>What kiho stores on your device</h2>
+  <p>All of the following is stored <strong>only</strong> in your browser’s local extension storage (<code>chrome.storage.local</code>) on your own machine. None of it is transmitted to the developer or any third party.</p>
+  <ul>
+    <li><strong>Highlights</strong> — the text you selected, its position on the page, the page URL, and the surrounding context sentence.</li>
+    <li><strong>Explanations</strong> — the AI responses for your highlights (cached so revisiting never re-calls the API).</li>
+    <li><strong>Review state</strong> — spaced-repetition scheduling data for each highlight.</li>
+    <li><strong>Settings</strong> — your Anthropic API key, chosen model, and language preferences.</li>
+  </ul>
+  <p>You can export all of this as JSON, or clear it (per page or entirely), at any time from the extension’s options page. Uninstalling the extension deletes all of it.</p>
+
+  <h2>What leaves your device, and to whom</h2>
+  <p>The <strong>only</strong> outbound data is the explanation request you initiate by clicking “look up” on a selection. For that request, kiho sends to <strong>Anthropic</strong> (<code>api.anthropic.com</code>):</p>
+  <ul>
+    <li>the selected word/phrase/sentence,</li>
+    <li>its surrounding context sentence (so the explanation fits the meaning in context),</li>
+    <li>optionally the page title,</li>
+    <li>authenticated with <strong>your own Anthropic API key</strong>.</li>
+  </ul>
+  <p>That request is governed by <a href="https://www.anthropic.com/legal/privacy" rel="noopener" target="_blank">Anthropic’s Privacy Policy</a> and the terms of your own Anthropic account. kiho does not add any recipient of its own — the developer never receives this data.</p>
+
+  <h2>Your API key</h2>
+  <ul>
+    <li>It is stored locally on your device and is used <strong>only</strong> as the authorization header on requests to Anthropic.</li>
+    <li>It is held exclusively by the extension’s background service worker. The content script that runs on web pages never has access to it.</li>
+    <li>It is <strong>never</strong> logged, never sent to the developer or any third party, and <strong>not</strong> included in the JSON export.</li>
+  </ul>
+
+  <h2>What kiho does NOT do</h2>
+  <ul>
+    <li>No telemetry, analytics, crash reporting, or usage tracking.</li>
+    <li>No accounts, sign-in, or cloud sync (everything is local in v1).</li>
+    <li>No selling, sharing, or transfer of your data to anyone.</li>
+    <li>No reading or transmitting of page content beyond the specific text you select and its surrounding sentence. The content script runs in an isolated world and does not harvest page contents.</li>
+  </ul>
+
+  <h2>Permissions and why they are needed</h2>
+  <ul>
+    <li><code>storage</code> — to save your highlights, explanations, review schedule, and settings locally.</li>
+    <li>Host access to <code>https://api.anthropic.com/*</code> — so the background can call the Anthropic API with your key to generate explanations.</li>
+    <li>Content scripts on the pages you visit — to detect your text selection, show the look-up button and explanation, and re-draw your saved highlights when you revisit a page. This runs locally in an isolated world; it does not send page content anywhere except the term + context you explicitly look up.</li>
+  </ul>
+
+  <h2>Data retention and control</h2>
+  <p>Your data lives on your device until you remove it. Export (JSON), clear-per-page, and clear-all are available in the options page; uninstalling removes everything. Cached explanations exist solely to avoid re-calling the API for text you already looked up.</p>
+
+  <h2>Changes</h2>
+  <p>Material changes to this policy will be reflected here with an updated effective date and noted on the store listing.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy or your data: <a href="mailto:support@trykiho.app">support@trykiho.app</a>.</p>
+
+  <hr>
+  <footer>© 2026 kiho · <a href="/">trykiho.app</a></footer>
+</div>
+</body>
+</html>
