@@ -93,7 +93,10 @@
   }
   @media (max-width:760px){ .lang-toggle button{min-height:44px} }
   .lang-toggle button[aria-pressed="true"]{background:var(--bg);color:var(--ink)}
-  .store-cta{white-space:nowrap}
+  .store-cta{
+    white-space:nowrap;display:inline-flex;align-items:center;height:42px;
+    padding:0 16px;font-size:14px;border-radius:8px;
+  }
   @media (max-width:560px){ .store-cta{display:none} }
 
   .hero{padding:64px 0 8px;text-align:center}
