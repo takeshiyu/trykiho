@@ -1,0 +1,10 @@
+<!-- kiho extension icon — master/reference.
+     Warm washi-paper tile + ink Source Serif 4 "k" + a matcha highlight bar
+     (the kì-hō / 記號 — a mark left on a word). Colours track the matcha-reading
+     palette. The "k" is <text> in Source Serif 4 Variable; for exact rendering /
+     to regenerate public/icon/*.png run:  node docs/brand/render-icons.mjs -->
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect x="1" y="1" width="126" height="126" rx="28" fill="#e8dfc6" stroke="#d5c8a8" stroke-width="2"/>
+  <rect x="20" y="72" width="88" height="26" rx="13" fill="#5a7440"/>
+  <text x="64" y="95" font-family="'Source Serif 4 Variable', 'Source Serif 4', Georgia, serif" font-weight="660" font-size="92" fill="#36332c" text-anchor="middle">k</text>
+</svg>
