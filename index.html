@@ -178,6 +178,19 @@
     section.final{padding:64px 0}
   }
 </style>
+
+<!-- Privacy-friendly analytics by Plausible — loads on the production host only,
+     never on localhost or preview checkouts -->
+<script>
+  if (location.hostname === 'trykiho.app') {
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init();
+    var plausibleScript = document.createElement('script');
+    plausibleScript.async = true;
+    plausibleScript.src = 'https://plausible.io/js/pa-zFpqfkuWaZd01VyspsIBH.js';
+    document.head.appendChild(plausibleScript);
+  }
+</script>
 </head>
 <body>
 
