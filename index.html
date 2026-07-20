@@ -34,7 +34,14 @@
   }
   *{box-sizing:border-box}
   ::selection{background:var(--selection)}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  .skip-link{
+    position:absolute;left:-9999px;top:0;z-index:100;background:var(--accent);color:var(--btn-ink);
+    padding:10px 18px;border-radius:0 0 10px 0;font-weight:600;text-decoration:none;
+  }
+  .skip-link:focus{left:0}
   body{
     margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
     font-size:clamp(1rem,.9rem + .3vw,1.0625rem);line-height:1.65;
@@ -54,15 +61,22 @@
 
   .btn{
     display:inline-block;border:1px solid var(--accent);border-radius:10px;
-    padding:11px 22px;font-weight:600;font-size:15px;text-decoration:none;
-    background:var(--accent);color:var(--btn-ink);
+    padding:13px 24px;font-weight:600;font-size:15px;text-decoration:none;
+    background:var(--accent);color:var(--btn-ink);touch-action:manipulation;
     transition:background .2s ease,border-color .2s ease;
   }
   .btn:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
   .btn.ghost{background:transparent;color:var(--accent);border-color:var(--line)}
   .btn.ghost:hover{background:var(--surface);color:var(--accent-ink)}
 
-  header.site{padding:20px 0}
+  header.site{
+    position:sticky;top:0;z-index:50;padding:14px 0;background:var(--bg);
+    border-bottom:1px solid transparent;transition:border-color .25s ease;
+  }
+  @supports (background:color-mix(in srgb,red 50%,blue)){
+    header.site{background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px)}
+  }
+  header.site.scrolled{border-bottom-color:var(--line-soft)}
   header.site .wrap{display:flex;align-items:center;gap:16px}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
   .brand svg{width:34px;height:34px}
@@ -74,8 +88,10 @@
   }
   .lang-toggle button{
     appearance:none;border:0;background:transparent;color:var(--muted);
-    font-family:var(--sans);font-size:12.5px;font-weight:600;padding:7px 12px;cursor:pointer;
+    font-family:var(--sans);font-size:12.5px;font-weight:600;padding:10px 14px;cursor:pointer;
+    min-height:40px;touch-action:manipulation;
   }
+  @media (max-width:760px){ .lang-toggle button{min-height:44px} }
   .lang-toggle button[aria-pressed="true"]{background:var(--bg);color:var(--ink)}
   .store-cta{white-space:nowrap}
   @media (max-width:560px){ .store-cta{display:none} }
@@ -96,7 +112,7 @@
   }
   .lead{font-size:19px;color:var(--muted);max-width:560px;margin:0 auto 28px}
   .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
-  .cta-note{font-size:14px;color:var(--faint);margin:0}
+  .cta-note{font-size:14px;color:var(--muted);margin:0}
 
   .hero-shot{padding:40px 0 0}
   .shot-card{
@@ -148,7 +164,8 @@
 
   footer.site{border-top:1px solid var(--line-soft);padding:36px 0 56px}
   footer.site .etym{color:var(--faint);font-size:14px;max-width:560px;margin:0 0 18px}
-  footer.site .links{display:flex;gap:20px;flex-wrap:wrap;font-size:14px}
+  footer.site .links{display:flex;gap:24px;flex-wrap:wrap;font-size:14px}
+  footer.site .links a{padding:8px 0;display:inline-block}
   footer.site .copy-line{color:var(--faint);font-size:13px;margin-top:18px}
 
   @media (max-width:560px){
@@ -160,6 +177,8 @@
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main" data-i18n="skipLink">Skip to content</a>
 
 <header class="site">
   <div class="wrap">
@@ -181,7 +200,7 @@
   </div>
 </header>
 
-<main>
+<main id="main">
   <section class="hero">
     <div class="wrap">
       <p class="eyebrow" data-i18n="eyebrow">Chrome extension · Local-first · BYOK</p>
@@ -199,7 +218,7 @@
     <div class="wrap">
       <figure class="shot-card" style="margin:0">
         <img data-shot="2-explain" src="assets/store/en/2-explain.png" width="1280" height="800"
-             fetchpriority="high"
+             fetchpriority="high" decoding="async"
              data-i18n-alt="heroAlt" alt="Not a generic dictionary — explained for that sentence.">
       </figure>
     </div>
@@ -216,7 +235,7 @@
         </div>
         <div class="shot">
           <figure class="shot-card" style="margin:0">
-            <img data-shot="1-lookup" src="assets/store/en/1-lookup.png" width="1280" height="800" loading="lazy"
+            <img data-shot="1-lookup" src="assets/store/en/1-lookup.png" width="1280" height="800" loading="lazy" decoding="async"
                  data-i18n-alt="f1alt" alt="Highlight any word — get an AI explanation in context.">
           </figure>
         </div>
@@ -229,7 +248,7 @@
         </div>
         <div class="shot">
           <figure class="shot-card" style="margin:0">
-            <img data-shot="3-review" src="assets/store/en/3-review.png" width="1280" height="800" loading="lazy"
+            <img data-shot="3-review" src="assets/store/en/3-review.png" width="1280" height="800" loading="lazy" decoding="async"
                  data-i18n-alt="f2alt" alt="Review what you looked up until it sticks.">
           </figure>
         </div>
@@ -242,7 +261,7 @@
         </div>
         <div class="shot">
           <figure class="shot-card" style="margin:0">
-            <img data-shot="4-library" src="assets/store/en/4-library.png" width="1280" height="800" loading="lazy"
+            <img data-shot="4-library" src="assets/store/en/4-library.png" width="1280" height="800" loading="lazy" decoding="async"
                  data-i18n-alt="f3alt" alt="Everything you've highlighted, in one place.">
           </figure>
         </div>
@@ -255,7 +274,7 @@
         </div>
         <div class="shot">
           <figure class="shot-card" style="margin:0">
-            <img data-shot="5-settings" src="assets/store/en/5-settings.png" width="1280" height="800" loading="lazy"
+            <img data-shot="5-settings" src="assets/store/en/5-settings.png" width="1280" height="800" loading="lazy" decoding="async"
                  data-i18n-alt="f4alt" alt="Local-first &amp; BYOK — your key, your data, no tracking.">
           </figure>
         </div>
@@ -318,6 +337,7 @@
 
   var I18N = {
     'en': {
+      skipLink: 'Skip to content',
       title: 'kiho — in-context English learning',
       desc: 'Highlight English while you read — get AI explanations in context, keep them across visits, and review with spaced repetition. BYOK.',
       eyebrow: 'Chrome extension · Local-first · BYOK',
@@ -356,6 +376,7 @@
       footContact: 'Contact'
     },
     'zh-TW': {
+      skipLink: '跳至主要內容',
       title: 'kiho —— 在情境中學英文',
       desc: '閱讀時標記英文字詞，取得貼合當下語境的 AI 解釋；標記跨造訪持續顯示，並以間隔重複複習記牢。自備 API 金鑰（BYOK）。',
       eyebrow: 'Chrome 擴充功能 · 本地優先 · 自備金鑰',
@@ -434,38 +455,49 @@
   try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
   if (saved && saved !== 'en') setLang(saved);
 
+  var siteHeader = document.querySelector('header.site');
+  var scrollTicking = false;
+  function onScroll(){
+    siteHeader.classList.toggle('scrolled', window.scrollY > 8);
+    scrollTicking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if (!scrollTicking) { scrollTicking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  onScroll();
+
   /* Motion: transforms only — content stays visible without JS and under reduced motion. */
   if (window.gsap) {
     gsap.registerPlugin(ScrollTrigger);
     var mm = gsap.matchMedia();
     mm.add('(prefers-reduced-motion: no-preference)', function(){
-      var tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.7 } });
+      var tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.55 } });
       tl.from('.hero .eyebrow', { y: 14 })
-        .from('.hero h1', { y: 18 }, '-=0.5')
-        .from('.hero .lead', { y: 14 }, '-=0.5')
-        .from('.hero .ctas', { y: 12 }, '-=0.5')
-        .from('.hero .cta-note', { y: 10 }, '-=0.6')
-        .fromTo('.hero .hl-ink', { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: 'power2.inOut' }, '-=0.3')
-        .from('.hero-shot .shot-card', { y: 28, duration: 0.9 }, '-=0.4');
+        .from('.hero h1', { y: 18 }, '-=0.4')
+        .from('.hero .lead', { y: 14 }, '-=0.4')
+        .from('.hero .ctas', { y: 12 }, '-=0.4')
+        .from('.hero .cta-note', { y: 10 }, '-=0.45')
+        .fromTo('.hero .hl-ink', { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: 'power2.inOut' }, '-=0.25')
+        .from('.hero-shot .shot-card', { y: 28, duration: 0.7 }, '-=0.3');
 
       gsap.utils.toArray('.row').forEach(function(row){
         gsap.from(row.querySelectorAll('.copy, .shot'), {
-          y: 24, duration: 0.8, ease: 'power3.out', stagger: 0.12,
-          scrollTrigger: { trigger: row, start: 'top 80%', once: true }
+          y: 24, duration: 0.65, ease: 'power3.out', stagger: 0.06,
+          scrollTrigger: { trigger: row, start: 'top 85%', once: true }
         });
       });
 
       ScrollTrigger.batch('.mini .card', {
-        start: 'top 88%', once: true,
+        start: 'top 90%', once: true,
         onEnter: function(els){
-          gsap.from(els, { y: 18, stagger: 0.08, duration: 0.6, ease: 'power3.out' });
+          gsap.from(els, { y: 18, stagger: 0.05, duration: 0.5, ease: 'power3.out' });
         }
       });
 
       gsap.utils.toArray('.byok, .final').forEach(function(sec){
         gsap.from(sec.children, {
-          y: 20, duration: 0.7, ease: 'power3.out',
-          scrollTrigger: { trigger: sec, start: 'top 82%', once: true }
+          y: 20, duration: 0.55, ease: 'power3.out',
+          scrollTrigger: { trigger: sec, start: 'top 85%', once: true }
         });
       });
 
